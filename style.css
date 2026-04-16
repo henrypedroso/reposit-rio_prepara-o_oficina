@@ -74,11 +74,7 @@ body {
   line-height: 1.6;
   font-size: 1rem;
   color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(232, 199, 140, 0.22), transparent 28%),
-    radial-gradient(circle at top right, rgba(85, 132, 92, 0.16), transparent 28%),
-    linear-gradient(180deg, #fbf7ef 0%, #f7f0e1 100%);
-  transition: background-color 0.3s, color 0.3s;
+  background: red
 }
 
 img {
