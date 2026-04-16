@@ -74,7 +74,7 @@ body {
   line-height: 1.6;
   font-size: 1rem;
   color: var(--text);
-  background: red
+  background: rgb(34, 1, 1)
 }
 
 img {
