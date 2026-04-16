@@ -1,7 +1,7 @@
 :root {
   /* Fundo principal do site:
      bege claro inspirado em papel, palha e tons naturais do agro */
-  --bg: #3b080d;
+  --bg: #6e050f;
 
   /* Fundo suave auxiliar:
      usado como variação mais clara do fundo principal */
@@ -74,7 +74,7 @@ body {
   line-height: 1.6;
   font-size: 1rem;
   color: var(--text);
-  background: rgb(34, 1, 1)
+  background: (--bg)
 }
 
 img {
