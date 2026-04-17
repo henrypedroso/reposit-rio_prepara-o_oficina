@@ -93,7 +93,7 @@ const carouselItems = [
     description: 'O início da jornada acontece no campo, onde o cultivo da cevada depende de planejamento, clima favorável e cuidado com os recursos naturais.'
   },
   {
-    src: './img/soldado_1.png',
+    src: './img/templario_02.jpg',
     alt: 'Malte em processo de beneficiamento',
     title: 'Transformação em malte',
     description: 'Após a colheita, a cevada passa por etapas de beneficiamento e transformação, unindo produção agrícola, tecnologia e indústria.'
