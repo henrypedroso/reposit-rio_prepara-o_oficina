@@ -93,13 +93,13 @@ const carouselItems = [
     description: 'O início da jornada acontece no campo, onde o cultivo da cevada depende de planejamento, clima favorável e cuidado com os recursos naturais.'
   },
   {
-    src: './img/malte.png',
+    src: './img/templario_02.jpg',
     alt: 'Malte em processo de beneficiamento',
     title: 'Transformação em malte',
     description: 'Após a colheita, a cevada passa por etapas de beneficiamento e transformação, unindo produção agrícola, tecnologia e indústria.'
   },
   {
-    src: './img/cidade.png',
+    src: './img/templario_03.jpg',
     alt: 'Cidade conectada à cadeia produtiva do malte',
     title: 'Campo e cidade conectados',
     description: 'O produto final chega à cidade e mostra como o agro movimenta a economia, abastece o cotidiano e depende de um futuro sustentável.'
