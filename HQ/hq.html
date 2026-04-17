@@ -3,248 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Templário: O Caminho do Guerreiro</title>
+    <title>Cruzada Pong: Duelo de Reflexos</title>
     <style>
         :root {
             --gold: #d4af37;
             --blood: #8b0000;
             --stone: #1a1510;
-            --sand: #c2b280;
-            --dust: rgba(0, 0, 0, 0.6);
         }
 
         body {
-            font-family: 'Cinzel', serif;
-            background-color: #000;
-            background-image: radial-gradient(circle, #2d241c 0%, #000 100%);
-            color: #eee;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            overflow: hidden;
-        }
-
-        #game-container {
-            width: 95%;
-            max-width: 900px;
-            background: #111;
-            border: 2px solid var(--gold);
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            position: relative;
-        }
-
-        .battle-area {
+            background: #000;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 20px;
-            gap: 15px;
-        }
-
-        .fighter-card {
-            flex: 1;
-            position: relative;
-            border: 1px solid #444;
-            overflow: hidden;
-            border-radius: 8px;
-            background: #222;
-            height: 380px;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        /* Container para imagem com carregamento */
-        .image-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            background: #111;
-        }
-
-        .fighter-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            filter: sepia(0.2) contrast(1.1);
-        }
-
-        .loading-placeholder {
-            color: var(--gold);
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .fighter-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 15px;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 20%, transparent 100%);
-            text-align: center;
-        }
-
-        .status-text {
-            font-size: 1.1rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .hp-bar-container {
-            width: 100%;
-            height: 8px;
-            background: #222;
-            border-radius: 4px;
+            justify-content: center;
+            height: 100vh;
             overflow: hidden;
-            border: 1px solid #444;
         }
 
-        .hp-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--blood), #ff4500);
-            width: 100%;
-            transition: width 0.4s ease-out;
+        #game-header {
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .hp-text {
-            font-size: 0.75rem;
-            margin-top: 5px;
-            font-family: monospace;
+        canvas {
+            border: 3px solid var(--gold);
+            background: radial-gradient(circle, #2d241c 0%, #000 100%);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            cursor: none; /* Esconde o mouse sobre o jogo */
+        }
+
+        .instructions {
+            margin-top: 15px;
+            font-size: 0.9rem;
             color: #aaa;
+            text-align: center;
         }
 
-        .controls {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+        #overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.85);
+            padding: 30px;
+            border: 2px solid var(--gold);
+            text-align: center;
+            display: none;
         }
 
         button {
-            padding: 12px;
+            padding: 10px 25px;
             background: var(--stone);
-            border: 1px solid var(--gold);
             color: var(--gold);
+            border: 1px solid var(--gold);
             cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
             font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            transition: all 0.3s;
+            font-weight: bold;
+            margin-top: 15px;
         }
 
-        button:hover:not(:disabled) {
+        button:hover {
             background: var(--gold);
             color: #000;
-            box-shadow: 0 0 10px var(--gold);
-        }
-
-        button:disabled { opacity: 0.3; }
-
-        #log {
-            height: 70px;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.7);
-            padding: 12px;
-            margin-top: 15px;
-            border-left: 3px solid var(--gold);
-            font-style: italic;
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-
-        /* Animações */
-        .atk-player { transform: scale(1.05) translateX(30px); }
-        .atk-enemy { transform: scale(1.05) translateX(-30px); }
-        .hit { animation: flashRed 0.4s; }
-
-        @keyframes flashRed {
-            0% { filter: brightness(1); }
-            50% { filter: brightness(2) saturate(2) hue-rotate(-20deg); }
-            100% { filter: brightness(1); }
-        }
-
-        .vs-label {
-            font-size: 1.5rem;
-            color: var(--gold);
-            opacity: 0.6;
-            align-self: center;
-        }
-
-        #reset-btn {
-            display: none;
-            width: 100%;
-            margin-top: 10px;
-            background: var(--blood);
-            color: white;
-            border: none;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div id="game-container">
-    <div style="text-align: center; margin-bottom: 15px;">
-        <h1 style="margin: 0; color: var(--gold); letter-spacing: 3px; font-size: 1.5rem;">LEGADO DE SANGUE</h1>
-    </div>
-    
-    <div class="battle-area">
-        <div id="player-card" class="fighter-card">
-            <div class="image-container" id="player-img-box">
-                <div class="loading-placeholder">Invocando Guerreiro...</div>
-            </div>
-            <div class="fighter-info">
-                <div class="status-text">Templário</div>
-                <div class="hp-bar-container"><div id="player-hp" class="hp-bar"></div></div>
-                <div id="player-hp-text" class="hp-text">100 / 100 HP</div>
-            </div>
-        </div>
+<div id="game-header">
+    <h1 style="margin: 0;">CRUZADA PONG</h1>
+    <div id="score" style="font-size: 1.5rem;">Templário 0 - 0 Sarraceno</div>
+</div>
 
-        <div class="vs-label">VS</div>
+<canvas id="pongCanvas"></canvas>
 
-        <div id="enemy-card" class="fighter-card">
-            <div class="image-container" id="enemy-img-box">
-                <div class="loading-placeholder">Invocando Oponente...</div>
-            </div>
-            <div class="fighter-info">
-                <div class="status-text">Sarraceno</div>
-                <div class="hp-bar-container"><div id="enemy-hp" class="hp-bar"></div></div>
-                <div id="enemy-hp-text" class="hp-text">100 / 100 HP</div>
-            </div>
-        </div>
-    </div>
+<div class="instructions">
+    Mova o mouse/dedo para controlar o Templário<br>
+    O Sarraceno (IA) defenderá o lado direito
+</div>
 
-    <div class="controls">
-        <button onclick="playTurn('attack')">Atacar</button>
-        <button onclick="playTurn('defend')">Defender</button>
-        <button onclick="playTurn('heal')">Curar</button>
-    </div>
-
-    <div id="log">A batalha está prestes a começar...</div>
-    <button id="reset-btn" onclick="resetGame()">Recomeçar</button>
+<div id="overlay">
+    <h2 id="winner-text">FIM DE BATALHA</h2>
+    <button onclick="resetGame()">Lutar Novamente</button>
 </div>
 
 <script>
+    const canvas = document.getElementById('pongCanvas');
+    const ctx = canvas.getContext('2d');
     const apiKey = "";
-    let gameState = {
-        playerHP: 100, enemyHP: 100,
-        isPlayerTurn: true, playerDefending: false, enemyDefending: false
-    };
 
-    // Função para gerar imagens via API
-    async function generateFighters() {
+    // Configurações
+    const paddleWidth = 80; // Largura do card do personagem
+    const paddleHeight = 120;
+    const ballSize = 15;
+    
+    let playerY = 0;
+    let enemyY = 0;
+    let ballX, ballY, ballDX, ballDY;
+    let playerScore = 0;
+    let enemyScore = 0;
+    let gameRunning = true;
+
+    // Imagens
+    let playerImg = new Image();
+    let enemyImg = new Image();
+    let imagesLoaded = false;
+
+    // Redimensionar canvas
+    function resize() {
+        canvas.width = Math.min(window.innerWidth * 0.9, 800);
+        canvas.height = Math.min(window.innerHeight * 0.6, 500);
+        playerY = canvas.height / 2 - paddleHeight / 2;
+        enemyY = canvas.height / 2 - paddleHeight / 2;
+        resetBall();
+    }
+
+    async function generateGameAssets() {
         const prompts = [
-            { id: 'player-img-box', prompt: "Hyper-realistic cinematic close-up of a Knights Templar, heavy armor with red cross, battle-worn face, desert background, embers in air, 8k", alt: "Templário" },
-            { id: 'enemy-img-box', prompt: "Hyper-realistic cinematic close-up of a Saracen warrior, green turban, golden lamellar armor, intense gaze, desert dunes background, 8k", alt: "Sarraceno" }
+            { id: 'player', prompt: "Knights Templar warrior portrait, white surcoat with red cross, medieval, realistic, dark background, 256x256" },
+            { id: 'enemy', prompt: "Saracen warrior portrait, golden armor, turban, fierce gaze, desert night background, 256x256" }
         ];
 
         for (const item of prompts) {
@@ -255,97 +137,168 @@
                 });
                 const result = await response.json();
                 const b64 = result.predictions[0].bytesBase64Encoded;
-                document.getElementById(item.id).innerHTML = `<img src="data:image/png;base64,${b64}" class="fighter-image" alt="${item.alt}">`;
+                if (item.id === 'player') playerImg.src = "data:image/png;base64," + b64;
+                else enemyImg.src = "data:image/png;base64," + b64;
             } catch (e) {
-                document.getElementById(item.id).innerHTML = `<div style="color:red; font-size:10px">Erro ao carregar imagem</div>`;
+                console.error("Erro na imagem:", e);
             }
         }
+        imagesLoaded = true;
     }
 
-    function updateUI() {
-        document.getElementById('player-hp').style.width = gameState.playerHP + '%';
-        document.getElementById('player-hp-text').innerText = `${gameState.playerHP} / 100 HP`;
-        document.getElementById('enemy-hp').style.width = gameState.enemyHP + '%';
-        document.getElementById('enemy-hp-text').innerText = `${gameState.enemyHP} / 100 HP`;
-        document.querySelectorAll('.controls button').forEach(btn => btn.disabled = !gameState.isPlayerTurn);
+    function resetBall() {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        ballDX = (Math.random() > 0.5 ? 4 : -4) * (canvas.width / 800);
+        ballDY = (Math.random() * 4 - 2) * (canvas.height / 500);
     }
 
-    function addLog(msg, type) {
-        const log = document.getElementById('log');
-        const color = type === 'player' ? '#4db8ff' : (type === 'enemy' ? '#ff4d4d' : '#d4af37');
-        log.innerHTML = `<div style="color: ${color}">> ${msg}</div>` + log.innerHTML;
-    }
+    function update() {
+        if (!gameRunning) return;
 
-    async function playTurn(action) {
-        if (!gameState.isPlayerTurn) return;
-        gameState.playerDefending = false;
+        // Movimento da bola
+        ballX += ballDX;
+        ballY += ballDY;
 
-        if (action === 'attack') {
-            let dmg = Math.floor(Math.random() * 15) + 10;
-            if (gameState.enemyDefending) dmg = Math.floor(dmg / 2);
-            gameState.enemyHP = Math.max(0, gameState.enemyHP - dmg);
-            addLog(`Você golpeou o inimigo! (${dmg} dano)`, 'player');
-            animate('player-card', 'atk-player');
-            animate('enemy-card', 'hit');
-        } else if (action === 'defend') {
-            gameState.playerDefending = true;
-            addLog("Você levanta seu escudo.", 'info');
-        } else if (action === 'heal') {
-            let heal = 20;
-            gameState.playerHP = Math.min(100, gameState.playerHP + heal);
-            addLog(`Você recupera energias. (+${heal} HP)`, 'player');
+        // Colisão teto/chão
+        if (ballY <= 0 || ballY >= canvas.height) ballDY *= -1;
+
+        // IA do Sarraceno (seguindo a bola com atraso suave)
+        let enemyTarget = ballY - paddleHeight / 2;
+        enemyY += (enemyTarget - enemyY) * 0.07;
+        enemyY = Math.max(0, Math.min(canvas.height - paddleHeight, enemyY));
+
+        // Colisão Templário (Esquerda)
+        if (ballX <= 30 + paddleWidth && ballY > playerY && ballY < playerY + paddleHeight) {
+            if (ballDX < 0) {
+                ballDX *= -1.1; // Aumenta velocidade
+                ballDY += (ballY - (playerY + paddleHeight / 2)) * 0.1;
+            }
         }
 
-        updateUI();
-        if (checkGameOver()) return;
-        gameState.isPlayerTurn = false;
-        setTimeout(enemyAI, 1200);
+        // Colisão Sarraceno (Direita)
+        if (ballX >= canvas.width - 30 - paddleWidth && ballY > enemyY && ballY < enemyY + paddleHeight) {
+            if (ballDX > 0) {
+                ballDX *= -1.1;
+                ballDY += (ballY - (enemyY + paddleHeight / 2)) * 0.1;
+            }
+        }
+
+        // Pontuação
+        if (ballX < 0) {
+            enemyScore++;
+            checkScore();
+            resetBall();
+        } else if (ballX > canvas.width) {
+            playerScore++;
+            checkScore();
+            resetBall();
+        }
+
+        document.getElementById('score').innerText = `Templário ${playerScore} - ${enemyScore} Sarraceno`;
     }
 
-    function enemyAI() {
-        gameState.enemyDefending = false;
-        if (Math.random() < 0.7) {
-            let dmg = Math.floor(Math.random() * 12) + 10;
-            if (gameState.playerDefending) dmg = Math.floor(dmg / 2);
-            gameState.playerHP = Math.max(0, gameState.playerHP - dmg);
-            addLog(`O sarraceno contra-ataca! (${dmg} dano)`, 'enemy');
-            animate('enemy-card', 'atk-enemy');
-            animate('player-card', 'hit');
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Linha central
+        ctx.strokeStyle = "rgba(212, 175, 55, 0.2)";
+        ctx.setLineDash([10, 10]);
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Desenhar Templário
+        drawFighter(30, playerY, playerImg, "Templário");
+
+        // Desenhar Sarraceno
+        drawFighter(canvas.width - 30 - paddleWidth, enemyY, enemyImg, "Sarraceno");
+
+        // Desenhar Bola (Esfera Sagrada)
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = varColor('--gold');
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballSize / 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+    }
+
+    function drawFighter(x, y, img, name) {
+        // Moldura do card
+        ctx.strokeStyle = varColor('--gold');
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, y, paddleWidth, paddleHeight);
+        
+        if (img.complete && imagesLoaded) {
+            ctx.drawImage(img, x, y, paddleWidth, paddleHeight);
         } else {
-            gameState.enemyDefending = true;
-            addLog("O inimigo assume postura defensiva.", 'info');
+            ctx.fillStyle = "#333";
+            ctx.fillRect(x, y, paddleWidth, paddleHeight);
+            ctx.fillStyle = varColor('--gold');
+            ctx.font = "10px Cinzel";
+            ctx.fillText("Carregando...", x + 5, y + paddleHeight / 2);
         }
-        gameState.isPlayerTurn = true;
-        updateUI();
-        checkGameOver();
+        
+        // Brilho de "raquete"
+        ctx.fillStyle = "rgba(212, 175, 55, 0.1)";
+        ctx.fillRect(x, y, paddleWidth, paddleHeight);
     }
 
-    function animate(id, className) {
-        const el = document.getElementById(id);
-        el.classList.add(className);
-        setTimeout(() => el.classList.remove(className), 400);
+    function varColor(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
     }
 
-    function checkGameOver() {
-        if (gameState.playerHP <= 0 || gameState.enemyHP <= 0) {
-            addLog(gameState.playerHP <= 0 ? "DERROTA. Sua jornada acaba aqui." : "VITÓRIA! O deserto é seu.", 'info');
-            document.getElementById('reset-btn').style.display = 'block';
-            return true;
+    function checkScore() {
+        if (playerScore >= 5 || enemyScore >= 5) {
+            gameRunning = false;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('winner-text').innerText = playerScore >= 5 ? "O TEMPLÁRIO VENCEU!" : "O SARRACENO VENCEU!";
         }
-        return false;
     }
 
     function resetGame() {
-        gameState = { playerHP: 100, enemyHP: 100, isPlayerTurn: true, playerDefending: false, enemyDefending: false };
-        document.getElementById('log').innerHTML = "O destino se renova...";
-        document.getElementById('reset-btn').style.display = 'none';
-        updateUI();
+        playerScore = 0;
+        enemyScore = 0;
+        gameRunning = true;
+        document.getElementById('overlay').style.display = 'none';
+        resetBall();
+    }
+
+    // Controles
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        playerY = e.clientY - rect.top - paddleHeight / 2;
+        // Limites
+        if (playerY < 0) playerY = 0;
+        if (playerY > canvas.height - paddleHeight) playerY = canvas.height - paddleHeight;
+    });
+
+    // Touch para celular
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        playerY = e.touches[0].clientY - rect.top - paddleHeight / 2;
+        if (playerY < 0) playerY = 0;
+        if (playerY > canvas.height - paddleHeight) playerY = canvas.height - paddleHeight;
+    }, { passive: false });
+
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
     }
 
     window.onload = () => {
-        updateUI();
-        generateFighters();
+        resize();
+        generateGameAssets();
+        gameLoop();
     };
+
+    window.onresize = resize;
 </script>
+
 </body>
 </html>
