@@ -17,7 +17,7 @@
 
   /* Cor principal do texto:
      marrom escuro quente, mais orgânico que preto puro */
-  --text: #fcfaf8;
+  --text: #2d241c;
 
   /* Texto secundário:
      marrom acinzentado para descrições e textos de apoio */
@@ -29,7 +29,7 @@
 
   /* Cor principal da identidade visual:
      verde agrícola, remetendo ao campo, cultivo e sustentabilidade */
-  --primary: #FFFFFF;
+  --primary: #335f45;
 
   /* Versão mais forte do verde principal:
      usada para contrastes, títulos e destaques mais sérios */
