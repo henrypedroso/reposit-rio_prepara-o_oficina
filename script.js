@@ -160,8 +160,8 @@ dots.forEach((dot) => {
 
 const facts = [
   'Os Templários criaram um dos primeiros sistemas bancários do mundo, permitindo que peregrinos depositassem fundos em um país e os sacassem em outro.',
-  'Além de cavaleiros, a Ordem possuía uma vasta frota de navios que dominava as rotas comerciais e de transporte pelo Mar Mediterrâneo',
-  'O famoso selo templário mostrava dois homens em um único cavalo, simbolizando o voto de pobreza e o espírito de fraternidade',
+  'Além de cavaleiros, a Ordem possuía uma vasta frota de navios que dominava as rotas comerciais e de transporte pelo Mar Mediterrâneo.',
+  'O famoso selo templário mostrava dois homens em um único cavalo, simbolizando o voto de pobreza e o espírito de fraternidade.',
   'Eles foram responsáveis por construir algumas das fortalezas e castelos mais impenetráveis e avançados da Idade Média.'
 ];
 
