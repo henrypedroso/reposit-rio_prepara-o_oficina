@@ -213,7 +213,7 @@ if (quizForm && quizResult) {
     }
 
     const feedbacks = {
-      5: 'Parabéns! Você acertou tudo e compreendeu muito bem a relação entre cevada, malte, campo, cidade e sustentabilidade.',
+      5: 'Parabéns! Você acertou tudo e compreendeu muito bem a saga dos Cavaleiros da Ordem do Templo.',
       4: 'Excelente! Você acertou 4 de 5 perguntas e demonstrou ótima compreensão do tema.',
       3: 'Muito bom! Você acertou 3 de 5 perguntas e já domina boa parte do conteúdo.',
       2: 'Você acertou 2 de 5 perguntas. Vale revisar o conteúdo e tentar novamente.',
