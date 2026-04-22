@@ -37,7 +37,7 @@
 
   /* Cor de destaque:
      dourado/ocre inspirado em cevada, malte e elementos naturais secos */
-  --accent: #b27a2f;
+  --accent: #106516;
 
   /* Versão suave do destaque:
      usada em detalhes delicados e fundos decorativos quentes */
@@ -1028,7 +1028,7 @@ footer {
 .high-contrast .social-links a {
   background: #111 !important;
   color: #fff !important;
-  border: 1px solid #d41717 !important;
+  border: 1px solid #fff !important;
 }
 
 .high-contrast .nav-links a,
