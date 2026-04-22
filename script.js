@@ -90,13 +90,13 @@ const carouselItems = [
     src: './img/templario_01.jpg',
     alt: 'Imagem primeiro templário',
     title: 'O Guerreiro',
-    description: 'O início da jornada acontece com a obrigação de proteger seus Irmãos'
+    description: 'O início da jornada acontece com a obrigação de proteger seus Irmãos.'
   },
   {
     src: './img/templario_02.jpg',
     alt: 'Imagem segundo templário',
     title: 'A saga do Caveleiro',
-    description: 'A força do templário é demonstrada quando decide ficar onde seria mais fácil desistir'
+    description: 'A força do templário é demonstrada quando decide ficar onde seria mais fácil desistir.'
   },
   {
     src: './img/templario_03.jpg',
