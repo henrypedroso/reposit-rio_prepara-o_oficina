@@ -159,10 +159,10 @@ dots.forEach((dot) => {
 });
 
 const facts = [
-  'A cevada é um dos grãos cultivados há mais tempo pela humanidade e segue tendo grande importância econômica e alimentar.',
-  'O malte não está presente apenas em bebidas: ele também pode ser utilizado em diferentes alimentos.',
-  'A força do agro também depende do cuidado com o solo, a água e os demais recursos naturais.',
-  'Produção e meio ambiente precisam caminhar juntos para garantir um futuro realmente sustentável.'
+  'Os Templários criaram um dos primeiros sistemas bancários do mundo, permitindo que peregrinos depositassem fundos em um país e os sacassem em outro.',
+  'Além de cavaleiros, a Ordem possuía uma vasta frota de navios que dominava as rotas comerciais e de transporte pelo Mar Mediterrâneo',
+  'O famoso selo templário mostrava dois homens em um único cavalo, simbolizando o voto de pobreza e o espírito de fraternidade',
+  'Eles foram responsáveis por construir algumas das fortalezas e castelos mais impenetráveis e avançados da Idade Média.'
 ];
 
 const factText = document.getElementById('fact-text');
