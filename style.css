@@ -1015,7 +1015,7 @@ footer {
 .high-contrast .contact-label {
   background: transparent !important;
   color: #ff0 !important;
-  border-color: #ff0 !important;
+  border-color: rgb(9, 9, 9) !important;
 }
 
 .high-contrast .action-btn,
