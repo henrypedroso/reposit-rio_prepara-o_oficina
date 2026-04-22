@@ -1014,7 +1014,7 @@ footer {
 .high-contrast .eyebrow,
 .high-contrast .contact-label {
   background: transparent !important;
-  color: #ff0 !important;
+  color: rgb(0, 0, 0) !important;
   border-color: black  !important;
 }
 
