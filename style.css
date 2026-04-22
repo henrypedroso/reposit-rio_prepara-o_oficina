@@ -21,7 +21,7 @@
 
   /* Texto secundário:
      marrom acinzentado para descrições e textos de apoio */
-  --muted: #ffffff;
+  --muted: #685a4d;
 
   /* Linhas e bordas suaves:
      tom terroso transparente para divisões discretas */
@@ -495,7 +495,7 @@ main {
 }
 
 .section-heading p {
-  color: var(--muted);
+  color: wheat;
 }
 
 .surface-block {
