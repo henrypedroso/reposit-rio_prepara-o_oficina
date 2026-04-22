@@ -88,21 +88,21 @@ window.addEventListener('load', revealOnScroll);
 const carouselItems = [
   {
     src: './img/templario_01.jpg',
-    alt: 'Campo de cevada em Guarapuava',
-    title: 'Campo de cevada',
-    description: 'O início da jornada acontece no campo, onde o cultivo da cevada depende de planejamento, clima favorável e cuidado com os recursos naturais.'
+    alt: 'Imagem primeiro templário',
+    title: 'O Guerreiro',
+    description: 'O início da jornada acontece com a obrigação de proteger seus Irmãos'
   },
   {
     src: './img/templario_02.jpg',
-    alt: 'Malte em processo de beneficiamento',
-    title: 'Transformação em malte',
-    description: 'Após a colheita, a cevada passa por etapas de beneficiamento e transformação, unindo produção agrícola, tecnologia e indústria.'
+    alt: 'Imagem segundo templário',
+    title: 'A saga do Caveleiro',
+    description: 'A força do templário é demonstrada quando decide ficar onde seria mais fácil desistir'
   },
   {
     src: './img/templario_03.jpg',
-    alt: 'Cidade conectada à cadeia produtiva do malte',
-    title: 'Campo e cidade conectados',
-    description: 'O produto final chega à cidade e mostra como o agro movimenta a economia, abastece o cotidiano e depende de um futuro sustentável.'
+    alt: 'Imagem terceiro templário',
+    title: 'A honra de um juramento',
+    description: 'A grande vitória do Monge é saber que seu dever foi cumprido mesmo sem ter o reconhecimento.'
   }
 ];
 
