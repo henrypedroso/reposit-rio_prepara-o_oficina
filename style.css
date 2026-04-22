@@ -309,7 +309,7 @@ main {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--primary);
-  background: rgba(51, 95, 69, 0.10);
+  background: black;
   border: 1px solid rgba(51, 95, 69, 0.16);
   padding: 8px 12px;
   border-radius: 999px;
@@ -1014,8 +1014,8 @@ footer {
 .high-contrast .eyebrow,
 .high-contrast .contact-label {
   background: transparent !important;
-  color: rgb(0, 0, 0) !important;
-  border-color: black  !important;
+  color: #ff0 !important;
+  border-color: #ff0 !important;
 }
 
 .high-contrast .action-btn,
